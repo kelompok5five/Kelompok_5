@@ -7,7 +7,6 @@ float zoom = 50.0f;
 float bolaX = 0.0f;
 float bolaZ = 0.0f;
 bool hidden = false;
-// Status pencahayaan
 bool isLightOn = true;
 GLfloat lightPos[] = {0.0f, 10.0f, 20.0f, 1.0f};
 
@@ -27,6 +26,14 @@ void Cartecius()
 	glVertex3f(0.0, 0.0, -100.0);
 	glVertex3f(0.0, 0.0, 100.0);
 	glEnd();
+}
+
+void hiddenCarte()
+{
+	if (hidden)
+	{
+		Cartecius();
+	}
 }
 
 void setupLighting() {
@@ -188,6 +195,7 @@ void drawGarisLapang() {
     glEnd();
 
     //Gawang
+    //merah
     glColor3f(1.0, 0.0, 0.0);
     glBegin(GL_LINE_LOOP);
     glVertex3f(-3.0, -0.5, -19.9);
@@ -195,7 +203,7 @@ void drawGarisLapang() {
     glVertex3f(3.0, 2.0, -19.9);
     glVertex3f(-3.0, 2.0, -19.9);
     glEnd();
-
+    //biru
     glColor3f(0.0, 0.0, 1.0);
     glBegin(GL_LINE_LOOP);
     glVertex3f(-3.0, -0.5, 19.9);
@@ -400,7 +408,6 @@ void TiangLampu(float x, float z) {
     glPopMatrix();
 }
 
-
 void drawBola() {
     glColor3f(0.5, 0.4, 0.7);
     glPushMatrix();
@@ -409,7 +416,6 @@ void drawBola() {
     glPopMatrix();
 }
 
-// Tambahkan fungsi untuk menggambar papan skor
 void drawPapanSkor() {
     // Gambar tiang papan skor
     glColor3f(0.6, 0.6, 0.6); // Warna abu-abu untuk tiang
@@ -564,14 +570,6 @@ void createMenu() {
     glutAddMenuEntry("Saklar Lampu", 1);
     glutAddMenuEntry("Exit", 2);
     glutAttachMenu(GLUT_RIGHT_BUTTON);
-}
-
-void hiddenCarte()
-{
-	if (hidden)
-	{
-		Cartecius();
-	}
 }
 
 int main(int argc, char** argv) {
